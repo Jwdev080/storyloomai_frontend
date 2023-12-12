@@ -1,0 +1,12 @@
+  .img-card {
+    color: #F5F5F5;
+    padding: 7px;
+    transition: all 200ms ease-in;
+    filter: grayscale(0.9) opacity(0.9);
+  }
+  
+  .img-card:hover {
+    filter: grayscale(0) opacity(1) !important;
+    padding: 5px !important;
+  }
+  

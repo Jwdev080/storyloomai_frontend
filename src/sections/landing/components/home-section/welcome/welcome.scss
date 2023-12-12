@@ -1,0 +1,90 @@
+@use "../../../scss/" as *;
+
+.welcome {
+    &__content {
+        @include flex(center, center);
+    }
+
+    &__info,
+    &__img {
+        width: 50%;
+        height: 100%;
+    }
+
+    &__info {
+        @include flex(flex-start, flex-end);
+
+        &__content {
+            padding-left: 15rem;
+
+            .description {
+                font-size: 2rem;
+            }
+
+            .btns > * ~ * {
+                margin-left: 1rem;
+            }
+        }
+    }
+
+    &__img {
+        @include flex(flex-end, flex-start);
+
+        &__slide {
+            height: 90vh;
+            width: 100vh;
+            overflow: hidden;
+
+            canvas {
+                display: block;
+            }
+        }
+    }
+}
+@media only screen and (max-width: 480px) {
+    .welcome {
+        &__content {
+            @include flex(left, center);
+        }
+    
+        &__info {
+            width: 100%;
+            height: 100%;
+        }
+
+        &__img {
+            width: 90%;
+            height: 100%;
+        }
+    
+        &__info {
+            @include flex(flex-start, flex-end);
+    
+            &__content {
+                padding-left: 15rem;
+    
+                .description {
+                    font-size: 2rem;
+                }
+    
+                .btns > * ~ * {
+                    margin-left: 1rem;
+                }
+            }
+        }
+    
+        &__img {
+            @include flex(flex-end, flex-start);
+    
+            &__slide {
+                height: 60vh;
+                width: 60vh;
+                overflow: hidden;
+    
+                canvas {
+                    display: block;
+                }
+            }
+        }
+    }
+  }
