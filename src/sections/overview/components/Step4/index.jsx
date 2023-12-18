@@ -11,7 +11,7 @@ import CircularProgress from '@mui/material/CircularProgress'
 import Snackbar from '@mui/material/Snackbar'
 import MuiAlert from '@mui/material/Alert'
 
-const Alert = React.forwardRef(function Alert(props, ref) {
+const Alert = React.forwardRef(function Alert (props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant='filled' {...props} />
 })
 
@@ -51,7 +51,8 @@ const App = () => {
       axios
         .post(
           `${import.meta.env.VITE_BACKEND_API_URL}/process/url_get`,
-          productData
+          productData,
+          { timeout: 600000 }
         )
         .then(response => {
           // Handle success
@@ -92,7 +93,7 @@ const App = () => {
           }
           //console.log(error.config) // This will contain the config used to make the request
         })
-    }, 3000)
+    }, 30000)
   }, [])
 
   return (
@@ -107,26 +108,29 @@ const App = () => {
           {snackData.text}
         </Alert>
       </Snackbar>
-      {loading ? <Stack
-        justifyContent='center'
-        alignItems='center'
-        sx={{ height: '60vh' }}
-        spacing={2}
-      >
-        <h2>One moment please...</h2>
-        {/* {scriptApiStep && <h2>Making Script...</h2>} */}
-        {imageApiStep && <h2>Making Model...</h2>}
-        {videoApiStep && <h2>Making Video...</h2>}
-        <CircularProgress color='info' size={50} />
-      </Stack> : 
-      <Stack
-        justifyContent='center'
-        alignItems='center'
-        sx={{ height: '60vh' }}
-        spacing={2}
-      >
-        <h2>Error. Try again</h2>
-      </Stack>}
+      {loading ? (
+        <Stack
+          justifyContent='center'
+          alignItems='center'
+          sx={{ height: '60vh' }}
+          spacing={2}
+        >
+          <h2>One moment please...</h2>
+          {/* {scriptApiStep && <h2>Making Script...</h2>} */}
+          {imageApiStep && <h2>Making Model...</h2>}
+          {videoApiStep && <h2>Making Video...</h2>}
+          <CircularProgress color='info' size={50} />
+        </Stack>
+      ) : (
+        <Stack
+          justifyContent='center'
+          alignItems='center'
+          sx={{ height: '60vh' }}
+          spacing={2}
+        >
+          <h2>Error. Try again</h2>
+        </Stack>
+      )}
     </Box>
   )
 }
