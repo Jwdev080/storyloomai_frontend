@@ -12,22 +12,11 @@ import Character7 from "./character/7.png";
 import Character8 from "./character/8.png";
 import Character9 from "./character/9.png";
 import Character10 from "./character/10.png";
-import Character11 from "./character/ahri-bg.jpg";
-import Character12 from "./character/akali-bg.jpg";
-import Character13 from "./character/ashe-bg.png";
-import Character14 from "./character/fortune-bg.jpg";
-import Character15 from "./character/garen-bg.jpg";
-import Character16 from "./character/lux-bg.jpg";
 import "./style.css";
 const App = () => {
   const dispatch = useDispatch();
   const productData = useSelector((state) => state.products.productData);
-  //const [selectedImages, setSelectedImages] = useState({ characterFirst: 0, characterSecond: 0 });
-  // const [character, setCharacter] = useState({
-  //   first: -1,
-  //   second: -1,
-  // });
-
+ 
   const [selectFirstId, setSelectFirstId] = useState(-1);
   const [selectSecondId, setSelectSecondId] = useState(-1);
   const [selectCount, setSelectCount] = useState(0);
@@ -46,19 +35,9 @@ const App = () => {
   ];
   const imageItems2 = [
     {
-      id: 16,
-      name: "I",
-      src: Character16,
-    },
-    {
       id: 4,
       name: "D",
       src: Character4,
-    },
-    {
-      id: 12,
-      name: "I",
-      src: Character12,
     },
     {
       id: 5,
@@ -71,29 +50,14 @@ const App = () => {
       src: Character6,
     },
     {
-      id: 15,
-      name: "I",
-      src: Character15,
-    },
-    {
       id: 7,
       name: "G",
       src: Character7,
     },
     {
-      id: 14,
-      name: "I",
-      src: Character14,
-    },
-    {
       id: 8,
       name: "H",
       src: Character8,
-    },
-    {
-      id: 13,
-      name: "I",
-      src: Character13,
     },
     {
       id: 9,
@@ -104,11 +68,6 @@ const App = () => {
       id: 10,
       name: "I",
       src: Character10,
-    },
-    {
-      id: 11,
-      name: "I",
-      src: Character11,
     },
     {
       id: 3,

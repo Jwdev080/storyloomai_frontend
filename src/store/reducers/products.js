@@ -43,6 +43,24 @@ export const getJson = createAsyncThunk(
 
       console.log(error.response.status);
       return error.response;
+      // if (error.response) {
+      //   // The request was made and the server responded with a status code
+      //   console.log(error.response.data); // This will contain the response data
+      //   console.log(error.response.status); // This will contain the status code
+      //   console.log(error.response.headers); // This will contain the response headers
+      // } else if (error.request) {
+      //   // The request was made but no response was received
+      //   console.log(error.request);
+      // } else {
+      //   // Something happened in setting up the request that triggered an error
+      //   console.log('Error', error.message);
+      // }
+      // console.log(error.config);
+
+
+      //console.log(error)
+      //throw error
+      return rejectWithValue(error.response.data);
     }
   }
 )
@@ -81,6 +99,7 @@ export const getVideoUrl = createAsyncThunk(
           'Content-Type': 'application/json'
         }
       }      
+      //console.log(ueData)
       const response = await axios.post(
         `${import.meta.env.VITE_BACKEND_API_URL}/process/get_url`,
         {
@@ -91,7 +110,10 @@ export const getVideoUrl = createAsyncThunk(
       console.log(response.data)
       return response.data
     } catch (error) {
+      
       return error.response;
+      // console.log(error)
+      // throw error
     }
   }
 )
@@ -119,6 +141,8 @@ export const productsSlice = createSlice({
         state.loading = true
       })
       .addCase(getJson.fulfilled, (state, action) => {
+        //state.loading = false
+        //state.productData = { ...state.productData, jsonData: action.payload }
       })
       .addCase(getJson.rejected, state => {
         state.loading = false

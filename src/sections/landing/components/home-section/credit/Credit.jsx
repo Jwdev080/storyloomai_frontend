@@ -7,27 +7,27 @@ import {
     text2,
     text3,
 } from '../../../assets/images';
-import { bgVideo ,bgVideo2 } from '../../../assets/videos'
+import { bgVideo } from '../../../assets/videos'
 import Button from '../../button/Button'
 
 const Credit = props => {
 
     const videoRef = useRef(null)
 
-    useEffect(() => {
-        videoRef.current.play()
-        const pauseVideo = () => {
-            if (!document.hidden) {
-                videoRef.current.play()
-            } else {
-                videoRef.current.pause()
-            }
-        }
-        document.addEventListener('webkitvisibilitychange', pauseVideo)
-        return () => {
-            document.removeEventListener('webkitvisibilitychange', pauseVideo)
-        }
-    }, []);
+    // useEffect(() => {
+    //     videoRef.current.play()
+    //     const pauseVideo = () => {
+    //         if (!document.hidden) {
+    //             videoRef.current.play()
+    //         } else {
+    //             videoRef.current.pause()
+    //         }
+    //     }
+    //     //document.addEventListener('webkitvisibilitychange', pauseVideo)
+    //     return () => {
+    //         document.removeEventListener('webkitvisibilitychange', pauseVideo)
+    //     }
+    // }, []);
 
     return (
         <div className={`credit overlay ${props.isActive ? 'active' : ''}`}>
@@ -37,8 +37,9 @@ const Credit = props => {
                 height="auto"
                 loop={true}
                 className="overlay"
+                autoPlay
             >
-                <source src={bgVideo2} type="video/mp4"/>
+                <source src={bgVideo} type="video/mp4"/>
             </video>
             {/* <div className="credit__content">
                 <div className="title">

@@ -26,7 +26,7 @@ const Header = () => {
           {logined ? (
             <>
               <li>
-                <Link to='/overview'>Overview</Link>
+                <a href='/overview'>Overview</a>
               </li>
               <li>
                 <Link onClick={()=>handleLogout()}>Logout</Link>

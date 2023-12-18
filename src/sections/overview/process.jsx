@@ -37,113 +37,7 @@ export default function AppWidgetSummary ({
   sx,
   ...other
 }) {
-  // const scenes = {
-  //   scene1: {
-  //     action: [
-  //       {
-  //         character_id: 'Robot',
-  //         script: 'According to calculations, we should take the next left.',
-  //         animation: 'talking1',
-  //         voice_id: '1',
-  //         duration: 0.976
-  //       },
-  //       {
-  //         character_id: 'Revenant',
-  //         script: 'Shut up and keep walking.',
-  //         animation: 'talking3',
-  //         voice_id: '2',
-  //         duration: 0.54
-  //       }
-  //     ],
-  //     total_duration: 1.516,
-  //     camera_type: 'c2_m'
-  //   },
-  //   scene2: {
-  //     action: [
-  //       {
-  //         character_id: 'Robot',
-  //         script: 'Did you know, in a time like this...',
-  //         animation: 'talking1',
-  //         voice_id: '2',
-  //         duration: 0.673
-  //       },
-  //       {
-  //         character_id: 'Revenant',
-  //         script: 'Enough! just keep silent!',
-  //         animation: 'talking2',
-  //         voice_id: '1',
-  //         duration: 0.635
-  //       }
-  //     ],
-  //     total_duration: 1.308,
-  //     camera_type: 'c2_cu'
-  //   },
-  //   scene3: {
-  //     action: [
-  //       {
-  //         character_id: 'Robot',
-  //         script: 'Final chance, bare left here.',
-  //         animation: 'talking3',
-  //         voice_id: '1',
-  //         duration: 0.569
-  //       },
-  //       {
-  //         character_id: 'Revenant',
-  //         script: ' Or what?! Furious servlet?',
-  //         animation: 'talking3',
-  //         voice_id: '2',
-  //         duration: 0.607
-  //       }
-  //     ],
-  //     total_duration: 1.176,
-  //     camera_type: 'c2_f'
-  //   },
-  //   scene4: {
-  //     action: [
-  //       {
-  //         character_id: 'Robot',
-  //         script: 'Or we multiply the chances of getting doomed.',
-  //         animation: 'talking1',
-  //         voice_id: '1',
-  //         duration: 0.843
-  //       },
-  //       {
-  //         character_id: 'Revenant',
-  //         script: 'Cut the crap and guide.',
-  //         animation: 'talking2',
-  //         voice_id: '2',
-  //         duration: 0.55
-  //       }
-  //     ],
-  //     total_duration: 1.393,
-  //     camera_type: 'c2_t'
-  //   }
-  // }
-  // const convertJsonObjectToJsonArrayForUE = (scenes) => {
-  //   const convertedArray = Object.keys(scenes).map(sceneKey => {
-  //     const scene = scenes[sceneKey]
-
-  //     return {
-  //       action: scene.action.map(action => {
-  //         return {
-  //           character_id: action.character_id,
-  //           script: action.script,
-  //           animation: action.animation,
-  //           voice_id: action.voice_id,
-  //           duration: action.duration
-  //         }
-  //       }),
-  //       total_duration: scene.total_duration,
-  //       camera_type: scene.camera_type
-  //     }
-  //   })
-  //   // Output the converted array
-  //   console.log(convertedArray)
-  // }
-  // convertJsonObjectToJsonArrayForUE(scenes)
-
   const [loading, setLoading] = useState(false)
-
   const dispatch = useDispatch()
   const product = useSelector(state => state.products)
   const productData = product.productData
@@ -209,10 +103,11 @@ export default function AppWidgetSummary ({
       axios
         .post(
           `${import.meta.env.VITE_BACKEND_API_URL}/process/json_process`,
-          product
+          product,
+          { timeout: 600000 }
         )
-        .then(response => {       
-          setLoading(false)  
+        .then(response => {
+          setLoading(false)
           const updatedStep = { ...step, id: step.id + 1 }
           setStep(updatedStep)
           console.log(response.data)
@@ -256,38 +151,6 @@ export default function AppWidgetSummary ({
           }
           //console.log(error.config) // This will contain the config used to make the request
         })
-
-      // const jsonData = dispatch(getJson(productData))
-
-      // jsonData.then(result1 => {
-      //   // const updatedStep = { ...step, id: step.id + 1 }
-      //   // setStep(updatedStep)
-      //   setLoading(false)
-      //   console.log(result1)
-      //   // if(result1.payload.status === 200) {
-      //   //   const updatedStep = { ...step, id: step.id + 1 }
-      //   //   setStep(updatedStep)
-      //   // }
-      //   if (result1.payload.status === 404) {
-      //     setSnackData({ open: true, text: 'There is no API found' })
-      //     //setSnackData({ open: true, text: result.payload.error })
-      //     const updatedStep = { ...step, id: step.id + 1 }
-      //     setStep(updatedStep)
-      //   } else if (result1.payload.status === 500) {
-      //     setSnackData({ open: true, text: 'Internal Server Error' })
-      //   } else if (result1.payload.status === 503) {
-      //     setSnackData({
-      //       open: true,
-      //       text: 'Server is busy. Please try again later.'
-      //     })
-      //   } else if (result1.payload.status === 400) {
-      //     setSnackData({ open: true, text: 'Error parsing JSON data.' })
-      //   } else if (result1.payload.status === 405) {
-      //     setSnackData({ open: true, text: 'Unsupported HTTP method.' })
-      //   } else {
-      //     setSnackData({ open: true, text: 'Network Error.' })
-      //   }
-      // })
     }
     if (
       (step.id === 3) &
@@ -319,7 +182,7 @@ export default function AppWidgetSummary ({
   }, [step])
 
   useEffect(() => {
-    setLoading(false);
+    setLoading(false)
     if (videoUrl !== null) {
       const updatedStep = { ...step, id: step.id + 1 }
       setStep(updatedStep)
