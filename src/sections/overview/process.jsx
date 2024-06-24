@@ -19,7 +19,6 @@ import Step2 from './components/Step2'
 import Step3 from './components/Step3'
 import Step4 from './components/Step4'
 import Step5 from './components/Step5'
-
 import CircularProgress from '@mui/material/CircularProgress'
 import Snackbar from '@mui/material/Snackbar'
 import MuiAlert from '@mui/material/Alert'
@@ -27,7 +26,6 @@ import MuiAlert from '@mui/material/Alert'
 const Alert = React.forwardRef(function Alert (props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant='filled' {...props} />
 })
-// ----------------------------------------------------------------------
 
 export default function AppWidgetSummary ({
   title,
@@ -202,7 +200,6 @@ export default function AppWidgetSummary ({
       </Stack>
     )
   }
-
   return (
     <Card
       xs={12}
@@ -283,11 +280,3 @@ export default function AppWidgetSummary ({
     </Card>
   )
 }
-
-// AppWidgetSummary.propTypes = {
-//   color: PropTypes.string,
-//   icon: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
-//   sx: PropTypes.object,
-//   title: PropTypes.string,
-//   total: PropTypes.number
-// }
